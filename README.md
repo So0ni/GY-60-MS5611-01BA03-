@@ -1,7 +1,7 @@
 # GY-60-MS5611-01BA03-Arduino
 
 #include <GY63.h>
-
+```C++
 GY63 gy63;
 
 void setup() {
@@ -15,3 +15,4 @@ void loop() {
   Serial.print(gy63.getPressure(MS561101BA_D1_OSR_4096));
   Serial.println(" hPa");
 }
+```
