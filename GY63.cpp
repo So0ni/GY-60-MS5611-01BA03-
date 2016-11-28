@@ -56,6 +56,13 @@ float GY63::getTemperature(unsigned char OSR_Temp)
 	delay(10);
 	GY63::dT = GY63::D2_Temp - (((unsigned long)GY63::Cal_C[5]) << 8);
 	GY63::TEMP = 2000 + GY63::dT*((unsigned long)GY63::Cal_C[6]) / 8388608;
+	if(GY63::TEMP>6000.0||GY63::TEMP<-5000.0){
+	    GY63::MS561101BA_RESET();
+	   delay(1000);
+	   GY63::MS561101BA_PROM_READ();
+	   delay(1000);
+	    return 0.0;
+    }
 	return GY63::TEMP / 100;
 }
 
@@ -80,6 +87,13 @@ float GY63::getPressure(unsigned char OSR_Pres)
 	}
 
 	GY63::Pressure = (GY63::D1_Pres*GY63::SENS / 2097152 - GY63::OFF_) / 32768;
+	if(GY63::Pressure>130000.0||GY63::Pressure<80000.0){
+	   GY63::MS561101BA_RESET();
+	   delay(1000);
+	   GY63::MS561101BA_PROM_READ();
+	   delay(1000);
+        return 0.0;
+    }
 	return GY63::Pressure / 100;
 }
 
