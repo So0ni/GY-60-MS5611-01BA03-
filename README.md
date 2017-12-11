@@ -1,4 +1,4 @@
-# GY-60-MS5611-01BA03-Arduino
+# GY-63-MS5611-01BA03-Arduino
 ```C++
 #include <GY63.h>
 
